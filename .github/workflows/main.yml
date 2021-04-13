@@ -8,8 +8,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: snyk/actions/setup@master
       - name: Snyk Code Test
-        working-directory: ./goof
-        run: snyk code test --sarif &> snyk-code.json
+        run: snyk code test --sarif &> "$GITHUB_WORKSPACE/snyk-code.json"
         continue-on-error: true       
         env:
            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
