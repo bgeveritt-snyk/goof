@@ -5,15 +5,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Print github workspace
+        run: |
+          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+          echo "github.workspace = ${{ github.workspace }}"
+          echo "pr.ref = ${{github.event.pull_request.head.ref}}"
+          echo "github.ref = ${{ github.ref }}"
+          echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v2
       - uses: snyk/actions/setup@master
       - name: Snyk Code Test
         run: snyk code test --sarif &> snyk-code.json
         continue-on-error: true       
         env:
-           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: snyk-code.json
-          checkout_path: ./goof
+           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
