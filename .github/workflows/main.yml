@@ -1,4 +1,4 @@
-name: "Snyk Code Test"
+name: "Snyk Code Action"
 # Run workflow each time code is pushed to your repository.
 on: push
 jobs:
@@ -6,10 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-            path: ../..
       - uses: snyk/actions/setup@master
-      - name: Snyk Code Test
+      - name: Snyk Code Action
         run: snyk code test --sarif &> snyk-code.json
         continue-on-error: true       
         env:
