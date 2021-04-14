@@ -11,9 +11,15 @@ jobs:
         run: snyk code test --sarif &> results.sarif
         continue-on-error: true       
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "home/runner/work/goof/goof/"
+          replace: ""
+          include: "results.sarif" 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
-          checkout_path: "."
+          checkout_path: ""
           sarif_file: results.sarif
