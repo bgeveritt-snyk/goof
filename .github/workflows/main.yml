@@ -6,6 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Print github workspace
+        run: |
+          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+          echo "github.workspace = ${{ github.workspace }}"
+          echo "pr.ref = ${{github.event.pull_request.head.ref}}"
+          echo "github.ref = ${{ github.ref }}"
       - uses: snyk/actions/setup@master
       - name: Snyk Code Action
         run: snyk code test --sarif &> results.sarif
