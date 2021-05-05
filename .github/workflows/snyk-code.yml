@@ -19,7 +19,7 @@ jobs:
           replace: ""
           include: "snyk-code.sarif" 
       - name: Update text
-        uses: sergeysova@jq-action@v2
+        uses: r26d/jq-action@master
         with:
           cmd: 'jq .["runs"][0]["results"][].message.text = .["runs"][0]["results"][].message.markdown snyk-code.sarif'
       - name: Upload SARIF file
