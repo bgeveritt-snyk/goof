@@ -18,6 +18,12 @@ jobs:
       #    find: "home/runner/work/goof/goof/"
       #    replace: ""
       #    include: "results.sarif" 
+      - name: Update results.sarif description
+        uses: jossef/action-set-json-field@v1
+        with:
+          file: results.sarif
+          field: uriBaseId
+          value: PROJECTROOT
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
