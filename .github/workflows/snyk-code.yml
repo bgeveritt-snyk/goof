@@ -15,10 +15,10 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "%SRCROOT%"
-          replace: "PROJECTROOT"
-          include: "results.sarif" 
+          find: "Users/bgeveritt/Documents/"
+          replace: ""
+          include: "snyk-code.sarif" 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
-          sarif_file: results.sarif
+          sarif_file: snyk-code.sarif
