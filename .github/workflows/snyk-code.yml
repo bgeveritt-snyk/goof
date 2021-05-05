@@ -21,8 +21,7 @@ jobs:
       - name: Update text
         uses: r26d/jq-action@master
         with:
-          cmd: jq del(.["runs"][0]["results"][].message.text) | 
-               .["runs"][0]["results"][].message |= with_entries(if .key == "markdown" then .key = "text" else . end) snyk-code.sarif > snyk-code.sarif.tmp && cp snyk-code.sarif.tmp snyk-code.sarif && rm snyk-code.sarif.tmp
+          cmd: 'jq del(.["runs"][0]["results"][].message.text) | .["runs"][0]["results"][].message |= with_entries(if .key == "markdown" then .key = "text" else . end) snyk-code.sarif > snyk-code.sarif.tmp && cp snyk-code.sarif.tmp snyk-code.sarif && rm snyk-code.sarif.tmp'
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
