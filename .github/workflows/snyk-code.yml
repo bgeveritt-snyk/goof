@@ -19,11 +19,7 @@ jobs:
           replace: ""
           include: "snyk-code.sarif" 
       - name: Update text
-      - run: |
-          # make file runnable, might not be necessary
-          chmod +x "${GITHUB_WORKSPACE}/.github/snyk-code-update-text.sh"
-          # run script
-          "${GITHUB_WORKSPACE}/.github/snyk-code-update-text.sh"
+      - run:  "${GITHUB_WORKSPACE}/.github/snyk-code-update-text.sh"
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
