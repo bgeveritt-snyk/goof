@@ -1,4 +1,4 @@
-name: "Snyk Code Action"
+name: "Snyk Code"
 # Run workflow each time code is pushed to your repository.
 on: push
 jobs:
