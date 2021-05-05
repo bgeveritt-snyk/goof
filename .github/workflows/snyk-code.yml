@@ -15,7 +15,7 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "Users/bgeveritt/Documents/"
+          find: "home/runner/work/goof/goof/"
           replace: ""
           include: "snyk-code.sarif" 
       - name: Upload SARIF file
