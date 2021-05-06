@@ -4,18 +4,22 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      WORKSPACE: $GITHUB_WORKSPACE
     steps:
       - uses: actions/checkout@v2
       - uses: snyk/actions/setup@master
       - name: Snyk Code Action
-        run: snyk code test --sarif &> snyk-code.sarif
+        run: |
+          snyk code test --sarif &> snyk-code.sarif
+          echo ${env.WORKSPACE}
         continue-on-error: true       
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: $GITHUB_WORKSPACE
+          find: ${env.WORKSPACE}
           replace: ""
           include: "snyk-code.sarif" 
       - name: Update text
