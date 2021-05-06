@@ -6,10 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Print github workspace
-        run: |
-          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
-          echo "github.workspace = ${{ github.workspace }}"
       - uses: snyk/actions/setup@master
       - name: Snyk Code Action
         run: snyk code test --sarif &> snyk-code.sarif
@@ -19,7 +15,7 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "home/runner/work/goof/goof/"
+          find: "{$GITHUB_WORKSPACE}"
           replace: ""
           include: "snyk-code.sarif" 
       - name: Update text
