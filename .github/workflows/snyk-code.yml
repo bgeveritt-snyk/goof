@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      FOO_ROOT: ${{ github.workspace }}
+      WORKSPACE: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v2
       - uses: snyk/actions/setup@master
