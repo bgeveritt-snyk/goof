@@ -12,7 +12,7 @@ jobs:
       - name: Snyk Code Action
         run: |
           snyk code test --sarif &> snyk-code.sarif
-          echo ${{env.WORKSPACE}}
+          echo ${env.WORKSPACE}
         continue-on-error: true       
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
