@@ -19,7 +19,7 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "${env.WORKSPACE}"
+          find: ${{ github.workspace }}
           replace: ""
           include: "snyk-code.sarif" 
       - name: Update text
