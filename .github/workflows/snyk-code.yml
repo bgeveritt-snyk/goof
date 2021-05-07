@@ -16,12 +16,12 @@ jobs:
         continue-on-error: true       
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #- name: Find and Replace
-      #  uses: jacobtomlinson/gha-find-replace@master
-      #  with:
-      #    find: 
-      #    replace: ""
-      #    include: "snyk-code.sarif" 
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "${env.WORKSPACE}"
+          replace: ""
+          include: "snyk-code.sarif" 
       - name: Update text
         run:  | 
               chmod +x "${GITHUB_WORKSPACE}/.github/snyk-code-update-text.sh"
