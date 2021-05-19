@@ -20,7 +20,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@master
         with:
           find: ${{ github.workspace }}
-          replace: ""
+          replace: "home/runner/work/goof/goof/"
           include: "snyk-code.sarif" 
       - name: Update text
         run:  | 
