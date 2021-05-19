@@ -19,8 +19,8 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: ${{ github.workspace }}
-          replace: "home/runner/work/goof/goof/"
+          find: "home/runner/work/goof/goof/"
+          replace: ""
           include: "snyk-code.sarif" 
       - name: Update text
         run:  | 
