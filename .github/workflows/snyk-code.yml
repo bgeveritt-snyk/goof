@@ -1,0 +1,15 @@
+name: "Snyk Code"
+# Run workflow each time code is pushed to your repository. 
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: snyk/actions/setup@master
+      - name: Snyk Code Action
+        run: |
+          snyk code test
+        continue-on-error: true       
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
