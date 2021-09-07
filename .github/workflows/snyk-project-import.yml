@@ -12,8 +12,8 @@ jobs:
               "${GITHUB_WORKSPACE}/.github/snyk-project-import.sh"
         env:
             WORKSPACE: ${{ github.workspace }}
-            OWNER: ${GITHUB_REPOSITORY}
-            REPOSITORY: ${GITHUB_REPOSITORY}
+            OWNER: ${{ github.repository_owner }}
+            REPOSITORY: ${{ github.event.repository.name }}
             BRANCH_NAME: ${GITHUB_REF##*/}
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
             SNYK_ORG: ${{ secrets.SNYK_ORG }}
