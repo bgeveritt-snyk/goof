@@ -11,8 +11,8 @@ wget --no-check-certificate --debug \
   --header 'Content-Type: application/json; charset=utf-8' \
   --body-data '{
   "target": {
-    "owner": "$OWNER",
-    "name": "$REPOSITORY",
+    "owner": $OWNER,
+    "name": $REPOSITORY,
     "branch": "main"
   }
 }' \
