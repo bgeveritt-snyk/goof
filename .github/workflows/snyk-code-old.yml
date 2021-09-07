@@ -1,32 +1,19 @@
-name: "Snyk Code (Old)"
+name: "Snyk Project Import"
 # Run workflow each time code is pushed to your repository. 
 on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      WORKSPACE: ${{ github.workspace }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: snyk/actions/setup@master
-      - name: Snyk Code Action
-        run: |
-          snyk code test --sarif &> snyk-code.sarif
-          echo ${{ github.workspace }}
-        continue-on-error: true       
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@master
-        with:
-          find: "home/runner/work/goof/goof/"
-          replace: ""
-          include: "snyk-code.sarif" 
-      - name: Update text
+      - uses: actions/checkout@v2   
+      - name: Snyk Branch Import
         run:  | 
-              chmod +x "${GITHUB_WORKSPACE}/.github/snyk-code-update-text.sh"
-              "${GITHUB_WORKSPACE}/.github/snyk-code-update-text.sh"
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: snyk-code.sarif
+              chmod +x "${GITHUB_WORKSPACE}/.github/snyk-project-import.sh"
+              "${GITHUB_WORKSPACE}/.github/snyk-project-import.sh"
+        env:
+            WORKSPACE: ${{ github.workspace }}
+            OWNER: ${GITHUB_REPOSITORY}
+            REPOSITORY: ${GITHUB_REPOSITORY}
+            BRANCH_NAME: ${GITHUB_REF##*/}
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+            SNYK_INTEGRATION_ID: ${{ secrets.SNYK_INTEGRATION_ID }}
