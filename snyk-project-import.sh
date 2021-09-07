@@ -3,6 +3,7 @@
 
 echo $OWNER
 echo $REPOSITORY
+wget --version
 
 wget --no-check-certificate --quiet \
   --method POST \
