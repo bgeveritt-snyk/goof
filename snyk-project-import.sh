@@ -1,13 +1,7 @@
 #!/bin/bash
 # Snyk Project Import
 
-echo $OWNER
-echo $REPOSITORY
-echo BRANCH_NAME=${GITHUB_REF##*/}
-echo Reserved for REPO_NAME=${GITHUB_REPOSITORY##*/}
-echo GITHUB_REF=${GITHUB_REF}
-echo EXTRACT_GITHUB_REF=${GITHUB_REF##*/}
-echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
+BRANCH_NAME=${GITHUB_REF##*/}
 
 wget --no-check-certificate --quiet \
   --method POST \
@@ -18,7 +12,7 @@ wget --no-check-certificate --quiet \
   "target": {
     "owner": "'$OWNER'",
     "name": "'$REPOSITORY'",
-    "branch": "main"
+    "branch": "'$BRANCH_NAME'"
   }
 }' \
    'https://snyk.io/api/v1/org/'$SNYK_ORG'/integrations/'$SNYK_INTEGRATION_ID'/import'
