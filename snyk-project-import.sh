@@ -1,6 +1,9 @@
 #!/bin/bash
 # Snyk Project Import
 
+echo $OWNER
+echo $REPOSITORY
+
 wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
@@ -10,7 +13,7 @@ wget --no-check-certificate --quiet \
   "target": {
     "owner": "$OWNER",
     "name": "$REPOSITORY",
-    "branch": "$BRANCH_NAME"
+    "branch": "main"
   }
 }' \
    'https://snyk.io/api/v1/org/$SNYK_ORG/integrations/$SNYK_INTEGRATION_ID/import'
