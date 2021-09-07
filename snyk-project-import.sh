@@ -5,7 +5,7 @@ echo $OWNER
 echo $REPOSITORY
 echo $BRANCH_NAME
 
-wget --no-check-certificate --debug \
+wget --no-check-certificate --quiet \
   --method POST \
   --timeout=0 \
   --header 'Authorization: token '$SNYK_TOKEN'' \
