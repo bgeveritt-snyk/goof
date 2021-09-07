@@ -7,9 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2   
       - name: Snyk Branch Import
-        run:  | 
-              chmod +x "${GITHUB_WORKSPACE}/.github/snyk-project-import.sh"
-              "${GITHUB_WORKSPACE}/.github/snyk-project-import.sh"
+        run:  sh /.github/snyk-project-import.sh
         env:
             WORKSPACE: ${{ github.workspace }}
             OWNER: ${{ github.repository_owner }}
