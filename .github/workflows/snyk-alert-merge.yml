@@ -1,4 +1,4 @@
-name: Close Pull Request
+name: Snyk Alert on Merge
 
 # only trigger on pull request closed events
 on:
