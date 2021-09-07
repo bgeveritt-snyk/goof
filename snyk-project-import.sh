@@ -3,7 +3,7 @@
 
 echo $OWNER
 echo $REPOSITORY
-echo $BRANCH_NAME
+echo BRANCH_NAME=${GITHUB_REF##*/}
 echo Reserved for REPO_NAME=${GITHUB_REPOSITORY##*/}
 echo GITHUB_REF=${GITHUB_REF}
 echo EXTRACT_GITHUB_REF=${GITHUB_REF##*/}
