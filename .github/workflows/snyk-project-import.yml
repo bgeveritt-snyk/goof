@@ -5,6 +5,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Branch Name
+      - uses: nelonoel/branch-name@v1
+      # Use branch name for whatever purpose
+      - run: echo ${BRANCH_NAME}
       - uses: actions/checkout@v2   
       - name: Snyk Branch Import
         run:  sh ./snyk-project-import.sh
@@ -12,7 +16,7 @@ jobs:
             WORKSPACE: ${{ github.workspace }}
             OWNER: ${{ github.repository_owner }}
             REPOSITORY: ${{ github.event.repository.name }}
-            BRANCH_NAME: ${{ github.ref }}
+            #BRANCH_NAME: ${{ github.ref }}
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
             SNYK_ORG: ${{ secrets.SNYK_ORG }}
             SNYK_INTEGRATION_ID: ${{ secrets.SNYK_INTEGRATION_ID }}
