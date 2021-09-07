@@ -3,7 +3,11 @@
 
 echo $OWNER
 echo $REPOSITORY
-echo $BRANCH_NAME
+
+echo Reserved for REPO_NAME=${GITHUB_REPOSITORY##*/}
+echo GITHUB_REF=${GITHUB_REF}
+echo EXTRACT_GITHUB_REF=${GITHUB_REF##*/}
+echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
 
 wget --no-check-certificate --quiet \
   --method POST \
