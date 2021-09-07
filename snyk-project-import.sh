@@ -3,9 +3,8 @@
 
 echo $OWNER
 echo $REPOSITORY
-wget --version
 
-wget --no-check-certificate --quiet \
+wget --no-check-certificate --debug \
   --method POST \
   --timeout=0 \
   --header 'Authorization: token $SNYK_TOKEN' \
