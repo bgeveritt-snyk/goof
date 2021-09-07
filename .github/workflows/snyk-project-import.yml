@@ -5,9 +5,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Branch Name
       - uses: nelonoel/branch-name@v1
-      # Use branch name for whatever purpose
+      - name: Get Branch Name
       - run: echo ${BRANCH_NAME}
       - uses: actions/checkout@v2   
       - name: Snyk Branch Import
