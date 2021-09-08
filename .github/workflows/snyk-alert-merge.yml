@@ -11,8 +11,14 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        curl -X POST -H 'Content-type: application/json' --data '{ "blocks": [ { "type": "section", "text": { "type": "mrkdwn", "text": "Branch `${{ github.head_ref }}` merged in to `${{ github.base_ref }}`" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<https://app.snyk.io/project/${{ secrets.SNYK_MAIN_PROJECT_ID }}|View Snyk Results>" } } ] }' ${{ secrets.SLACK_WEBHOOK_URL }}
+    - run: sh ./snyk-alert-merge.sh
+      env:
+        REPOSITORY: ${{ github.repository }}
+        BASE_REF: ${{ github.base_ref }}
+        HEAD_REF: ${{ github.head_ref }}
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_ORG: ${{ secrets.SNYK_ORG }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   close_job:
     # this job will only run if the PR has been closed without being merged
