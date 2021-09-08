@@ -21,11 +21,3 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         SNYK_ORG: ${{ secrets.SNYK_ORG }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  close_job:
-    # this job will only run if the PR has been closed without being merged
-    if: github.event.pull_request.merged == false
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo PR #${{ github.event.number }} has been closed without being merged
