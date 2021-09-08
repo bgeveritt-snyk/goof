@@ -1,4 +1,4 @@
-name: Snyk Alert on Merge
+name: Close Pull Request
 
 # only trigger on pull request closed events
 on:
@@ -11,10 +11,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: PR Merged - Snyk Snyk Alert to Slack
-      - uses: actions/checkout@v2
-      - run: |
-          curl -X POST -H 'Content-type: application/json' --data '{ "blocks": [ { "type": "section", "text": { "type": "mrkdwn", "text": "Branch `inline` merged to `main`" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<http://www.google.com|View Snyk Test Results>" } } ] }' ${{ secrets.SLACK_WEBHOOK_URL }}
+    - run: |
+        echo PR #${{ github.event.number }} has been merged
 
   close_job:
     # this job will only run if the PR has been closed without being merged
