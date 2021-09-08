@@ -11,13 +11,15 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - run: |
-           ls -la .github/workflows/scripts/snyk-alert-merge.sh
-           sh .github/workflows/scripts/snyk-alert-merge.sh
-      env:
-        REPOSITORY: ${{ github.repository }}
-        BASE_REF: ${{ github.base_ref }}
-        HEAD_REF: ${{ github.head_ref }}
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        SNYK_ORG: ${{ secrets.SNYK_ORG }}
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - uses: actions/checkout@v2
+      - name: Snyk Alert
+      - run: |
+             ls -la .github/workflows/scripts/snyk-alert-merge.sh
+             sh .github/workflows/scripts/snyk-alert-merge.sh
+        env:
+          REPOSITORY: ${{ github.repository }}
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_ORG: ${{ secrets.SNYK_ORG }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
