@@ -11,9 +11,10 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        curl -X POST -H 'Content-type: application/json' --data '{ "blocks": [ { "type": "section", "text": { "type": "mrkdwn", "text": "Branch `inline` merged to `main`" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<http://www.google.com|View Snyk Test Results>" } } ] }' ${{ secrets.SLACK_WEBHOOK_URL }}
-    - name: Send Snyk Alert to Slack
+      - name: PR Merged - Snyk Snyk Alert to Slack
+      - uses: actions/checkout@v2
+      - run: |
+          curl -X POST -H 'Content-type: application/json' --data '{ "blocks": [ { "type": "section", "text": { "type": "mrkdwn", "text": "Branch `inline` merged to `main`" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<http://www.google.com|View Snyk Test Results>" } } ] }' ${{ secrets.SLACK_WEBHOOK_URL }}
 
   close_job:
     # this job will only run if the PR has been closed without being merged
