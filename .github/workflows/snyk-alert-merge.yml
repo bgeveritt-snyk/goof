@@ -13,9 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Snyk Alert
-      - run: |
-             ls -la .github/workflows/scripts/snyk-alert-merge.sh
-             sh .github/workflows/scripts/snyk-alert-merge.sh
+      - run: sh .github/workflows/scripts/snyk-alert-merge.sh
         env:
           REPOSITORY: ${{ github.repository }}
           BASE_REF: ${{ github.base_ref }}
