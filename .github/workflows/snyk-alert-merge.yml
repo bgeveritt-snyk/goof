@@ -11,7 +11,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - run: sh ./snyk-alert-merge.sh
+    - run: sh .github/workflows/scripts/snyk-alert-merge.sh
       env:
         REPOSITORY: ${{ github.repository }}
         BASE_REF: ${{ github.base_ref }}
