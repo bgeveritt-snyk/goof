@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        curl -X POST -H 'Content-type: application/json' --data '{ "blocks": [ { "type": "section", "text": { "type": "mrkdwn", "text": "Branch `inline` merged to `main`" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<http://www.google.com|View Snyk Test Results>" } } ] }' ${{ secrets.SLACK_WEBHOOK_URL }}
+        curl -X POST -H 'Content-type: application/json' --data '{ "blocks": [ { "type": "section", "text": { "type": "mrkdwn", "text": "Branch `${{ github.base_ref }}` merged to `${{ github.head_ref }}`" } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<http://www.google.com|View Snyk Test Results>" } } ] }' ${{ secrets.SLACK_WEBHOOK_URL }}
 
   close_job:
     # this job will only run if the PR has been closed without being merged
