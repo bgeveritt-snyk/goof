@@ -54,6 +54,7 @@ exports.admin = function (req, res, next) {
 
 function parse(todo) {
   var t = todo;
+  var test = "";
 
   var remindToken = ' in ';
   var reminder = t.toString().indexOf(remindToken);
