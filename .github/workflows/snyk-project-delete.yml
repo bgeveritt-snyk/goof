@@ -14,9 +14,8 @@ jobs:
       - name: Snyk Branch Delete
         run:  sh .github/workflows/scripts/snyk-project-delete.sh
         env:
-            WORKSPACE: ${{ github.workspace }}
-            OWNER: ${{ github.repository_owner }}
             REPOSITORY: ${{ github.event.repository.name }}
+            HEAD_REF: ${{ github.head_ref }}
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
             SNYK_ORG: ${{ secrets.SNYK_ORG }}
             SNYK_INTEGRATION_ID: ${{ secrets.SNYK_INTEGRATION_ID }}
