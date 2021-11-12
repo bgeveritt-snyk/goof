@@ -3,8 +3,6 @@
 
 OWNER_REPOSITORY_BRANCH=$OWNER'/'$REPOSITORY'('$HEAD_REF')'
 
-echo $OWNER_REPOSITORY_BRANCH
-
 snykResponse=$(curl -s POST 'https://snyk.io/api/v1/org/'$SNYK_ORG'/projects' \
 --header 'Authorization: token '$SNYK_TOKEN'' \
 --header 'Content-Type: application/json' \
