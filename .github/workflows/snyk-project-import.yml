@@ -1,8 +1,8 @@
 name: "Snyk Project Import"
-# Run workflow each time code is pushed to your repository. 
-on: push
+# Run workflow each time a new branch is created. 
+on: create
 jobs:
-  build:
+  snyk-project-import:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2   
