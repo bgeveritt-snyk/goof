@@ -1,0 +1,21 @@
+name: "Snyk Project Delete"
+on:
+  pull_request:
+    branches: 
+      - main
+  types: [closed]
+jobs:
+  snyk-project-delete:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2   
+      - name: Snyk Branch Delete
+        run:  sh .github/workflows/scripts/snyk-project-delete.sh
+        env:
+            WORKSPACE: ${{ github.workspace }}
+            OWNER: ${{ github.repository_owner }}
+            REPOSITORY: ${{ github.event.repository.name }}
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+            SNYK_ORG: ${{ secrets.SNYK_ORG }}
+            SNYK_INTEGRATION_ID: ${{ secrets.SNYK_INTEGRATION_ID }}
