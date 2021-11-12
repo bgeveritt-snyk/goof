@@ -1,16 +1,16 @@
 #!/bin/bash
 # Snyk Project Delete
 
-REPOSITORY_BRANCH=$REPOSITORY'('$HEAD_REF')'
+OWNER_REPOSITORY_BRANCH=$OWNER$'/'$REPOSITORY'('$HEAD_REF')'
 
-echo $REPOSITORY_BRANCH
+echo $OWNER_REPOSITORY_BRANCH
 
 snykResponse=$(curl -s POST 'https://snyk.io/api/v1/org/'$SNYK_ORG'/projects' \
 --header 'Authorization: token '$SNYK_TOKEN'' \
 --header 'Content-Type: application/json' \
 --data-raw '{ 
     "filters": { 
-        "name": "'$REPOSITORY_BRANCH'" 
+        "name": "'$OWNER_REPOSITORY_BRANCH'" 
     } 
 }' | jq -r '.projects[].id')
 
