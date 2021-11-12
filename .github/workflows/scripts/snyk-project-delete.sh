@@ -4,6 +4,8 @@
 BRANCH_NAME=${GITHUB_REF##*/}
 OWNER_REPO_BRANCH=$OWNER$'/'$REPO'('$BRANCH')'
 
+echo $OWNER_REPO_BRANCH
+
 snykResponse=$(curl -s POST 'https://snyk.io/api/v1/org/'$SNYK_ORG'/projects' \
 --header 'Authorization: token '$SNYK_TOKEN'' \
 --header 'Content-Type: application/json' \
