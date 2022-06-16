@@ -1,0 +1,20 @@
+name: Container Scan
+on: push
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build -t bgeveritt-snyk/goof .
+    - name: Run Snyk to check Docker image for vulnerabilities
+      # Snyk can be used to break the build when it detects vulnerabilities.
+      continue-on-error: true
+      uses: snyk/actions/docker@master
+      env:
+        # In order to use the Snyk Action you will need to have a Snyk API token.
+        # More details in https://github.com/snyk/actions#getting-your-snyk-token
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        image: bgeveritt-snyk/goof
+        args: --file=Dockerfile --exclude-base-image-vulns
